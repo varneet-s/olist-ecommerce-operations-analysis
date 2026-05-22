@@ -1,0 +1,2 @@
+data/Olist_Business_Analysis.xlsx filter=lfs diff=lfs merge=lfs -text
+data/raw_data/olist_geolocation_dataset.csv filter=lfs diff=lfs merge=lfs -text
