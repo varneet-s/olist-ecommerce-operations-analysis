@@ -1,8 +1,6 @@
 # Analysis
 
-## Overview
-
-This document details every step of the data analysis process, from raw data ingestion through final Tableau dashboard creation. The analysis is organized using the STAR framework (Situation, Task, Action, Result) to show what needed to be done, how I did it, and what was achieved at each phase.
+This document details every step of the data analysis process, from raw data ingestion through final Tableau dashboard creation. The analysis is organised using the STAR framework (Situation, Task, Action, Result) to show what needed to be done, how I did it, and what was achieved at each phase.
 
 ---
 
@@ -12,7 +10,7 @@ This document details every step of the data analysis process, from raw data ing
 The Olist dataset consisted of 9 separate CSV files provided by Kaggle, each containing different aspects of the order lifecycle: customers, orders, order_items, products, sellers, payments, reviews, geolocation, and product category translations. These files needed to be connected through foreign key relationships to enable cross-table analysis.
 
 ### Task
-Load all 9 CSV files into a single Excel workbook and create a unified MASTER sheet that consolidated the necessary fields from each table, enabling pivot table analysis without repeatedly performing manual lookups.
+Load all 9 CSV files into a single Excel workbook and create a unified MASTER sheet that consolidates the necessary fields from each table, enabling pivot table analysis without repeatedly performing manual lookups.
 
 ### Action
 
@@ -44,7 +42,7 @@ I brought the following columns into MASTER using exact formulas:
 =XLOOKUP([@order_id],RAW_items[order_id],RAW_items[freight_value])
 =XLOOKUP([@order_id],RAW_items[order_id],RAW_items[seller_id])
 ```
-*Business Logic*: Each order can have multiple items, but for the initial analysis I focused on the first item returned by XLOOKUP to simplify aggregation. This is acceptable because 92% of orders contained a single item.
+*Business Logic*: Each order can have multiple items, but for the initial analysis, I focused on the first item returned by XLOOKUP to simplify aggregation. This is acceptable because 92% of orders contained a single item.
 
 **From RAW_reviews (via order_id):**
 ```excel
@@ -83,7 +81,7 @@ Successfully created a MASTER sheet with 99,441 rows and 23 columns, combining o
 ## Phase 2: Data Cleaning & Filtering
 
 ### Situation
-The MASTER sheet contained orders across all statuses (delivered, shipped, canceled, unavailable). Only delivered orders were relevant for testing the hypotheses because review scores and delivery timing require completed deliveries.
+The MASTER sheet contained orders across all statuses (delivered, shipped, cancelled, unavailable). Only delivered orders were relevant for testing the hypotheses because review scores and delivery timing require completed deliveries.
 
 ### Task
 Filter the dataset to include only delivered orders and calculate metrics needed for hypothesis testing.
@@ -92,7 +90,7 @@ Filter the dataset to include only delivered orders and calculate metrics needed
 
 **Step 1: Filter to Delivered Orders**
 - Applied filter on `order_status` column → selected "delivered"
-- Row count reduced from 99,441 to 96,478 (97% of dataset)
+- Row count reduced from 99,441 to 96,478 (97% of the dataset)
 - Copied filtered rows to a new sheet named `DELIVERED_ONLY` to lock in this subset
 
 **Step 2: Calculated Column 1 — Delivery Delay (Days)**
@@ -114,7 +112,7 @@ Created `delivery_status` to classify each order as Early, On Time, or Late.
 
 Formula:
 ```excel
-=IF([@delivery_delay_days]<0,"Early",IF([@delivery_delay_days]=0,"On Time","Late"))
+=IF([@delivery_delay_days]<0,"Early", IF([@delivery_delay_days]=0,"On Time","Late"))
 ```
 
 *Business Logic*: This field enables pivot table grouping by delivery performance category for H1 testing.
@@ -137,7 +135,7 @@ Formula:
 =TEXT([@order_purchase_timestamp],"mmm yyyy")
 ```
 
-*Business Logic*: Converts timestamp into readable format like "Aug 2017" for monthly trend visualization.
+*Business Logic*: Converts timestamp into a readable format like "Aug 2017" for monthly trend visualisation.
 
 **Step 6: Calculated Column 5 — Freight as Percentage of Price**
 Created `freight_pct` to quantify freight burden relative to order value (H4 test).
@@ -150,7 +148,7 @@ Formula:
 *Business Logic*: A product priced at R$100 with R$50 freight has a 50% freight burden. This metric reveals how much of the customer's total cost goes to shipping rather than the product itself.
 
 ### Result
-DELIVERED_ONLY sheet now contained 96,478 rows with 8 new calculated columns, ready for pivot table analysis. No data quality issues required handling—there were no null values in critical fields (order_id, customer_state, seller_state, price, freight_value).
+DELIVERED_ONLY sheet now contains 96,478 rows with 8 new calculated columns, ready for pivot table analysis. No data quality issues required handling—there were no null values in critical fields (order_id, customer_state, seller_state, price, freight_value).
 
 ---
 
@@ -296,17 +294,17 @@ For comparison:
 ---
 
 ### Result
-All 6 pivot tables completed. All four hypotheses (H1, H2, H3, H4) were validated with quantified evidence. Data was ready for visualization in Tableau.
+All 6 pivot tables completed. All four hypotheses (H1, H2, H3, H4) were validated with quantified evidence. The data was ready for visualisation in Tableau.
 
 ---
 
-## Phase 4: Tableau Dashboard Development
+## Phase 4: Data Visualisation
 
 ### Situation
 The pivot tables provided numerical evidence, but stakeholders needed visual representations to grasp the scale of the geographic concentration, seller Pareto distribution, and delivery performance gaps.
 
 ### Task
-Build an interactive Tableau dashboard with 4 core visualizations, including a technically complex GMV Pareto curve with custom calculated fields.
+Build an interactive Tableau dashboard with 4 core visualisations, including a technically complex GMV Pareto curve with custom calculated fields.
 
 ### Action
 
@@ -315,35 +313,41 @@ Build an interactive Tableau dashboard with 4 core visualizations, including a t
 - Selected `DELIVERED_ONLY` sheet from `Olist_Business_Analysis.xlsx`
 - Verified field types (dimensions vs. measures) and relationships
 
-**Step 2: Visualization 1 — Delay Severity vs. Review Score**
+
+**Step 2: Visualisation 1 — Delay Severity vs. Review Score**
 - Chart type: Line chart
 - X-axis: `delay_band` (ordered: Early → On Time → Late 1-3d → Late 4-7d → Late 7+d)
 - Y-axis: AVG(`review_score`)
 - Labels: Count of orders at each data point
+
+![H1-delay-severity-vs-score](./images/h1_delay_severity_vs_score.png)
+
 - **Insight shown**: Visual collapse from 4.3 (early) to 1.7 (7+ days late)
 
-**Step 3: Visualization 2 — Revenue by Top 10 States**
+
+**Step 3: Visualisation 2 — Revenue by Top 10 States**
 - Chart type: Horizontal bar chart
 - Rows: `customer_state` (filtered to top 10 by SUM(price))
 - Columns: SUM(`price`)
-- Color: By state (categorical)
+- Colour: By state (categorical)
 - **Insight shown**: SP dominates at R$4.6M, top 3 states control 70% of GMV
 
-**Step 4: Visualization 3 — Freight % by State**
+**Step 4: Visualisation 3 — Freight % by State**
 - Chart type: Horizontal bar chart
 - Rows: `customer_state` (sorted descending by AVG(freight_pct))
 - Columns: AVG(`freight_pct`)
-- Color gradient: Red (high) to green (low)
+- Colour gradient: Red (high) to green (low)
 - **Insight shown**: Northern states have 50-60% freight burden vs. 25% in SP
 
-**Step 5: Visualization 4 — Monthly Growth Trend**
+
+**Step 5: Visualisation 4 — Monthly Growth Trend**
 - Chart type: Line chart
 - X-axis: `order_purchase_month_year` (continuous timeline)
 - Y-axis: COUNT DISTINCT(`order_id`)
 - Labels: Show peak months (Nov 2017: 7,289 orders)
 - **Insight shown**: Rapid growth 2016-2017, then plateau 2018
 
-**Step 6: Visualization 5 — Geographic Maps (2 maps)**
+**Step 6: Visualisation 5 — Geographic Maps (2 maps)**
 
 **Map A: Customers by State**
 - Map type: Filled map (choropleth)
@@ -361,7 +365,7 @@ Build an interactive Tableau dashboard with 4 core visualizations, including a t
 
 ---
 
-**Step 7: Advanced Visualization — GMV Pareto Curve (Lorenz Curve)**
+**Step 7: Advanced Visualisation — GMV Pareto Curve (Lorenz Curve)**
 
 This was the most technically complex chart, requiring 8 custom calculated fields to accurately deduplicate data and compute concentration ratios.
 
@@ -369,7 +373,7 @@ This was the most technically complex chart, requiring 8 custom calculated field
 
 **Calculated Field 1: True GMV**
 ```tableau
-{FIXED [Order Id], [Product Id], [Seller Id] : MAX([Price])}
+{FIXED [Order Id], [Product Id], [Seller Id]: MAX([Price])}
 ```
 *Purpose*: Deduplicates price at the order-product-seller grain. Returns one price value per unique order item.
 
@@ -395,7 +399,7 @@ IF [Top 20% of Sellers] THEN SUM([True GMV]) END
 ```tableau
 WINDOW_SUM([Top 20% Sellers GMV]) / WINDOW_SUM(SUM([True GMV]))
 ```
-*Purpose*: Divides total GMV from top 20% by total platform GMV. This gives us 82.54%.
+*Purpose*: Divides total GMV from the top 20% by total platform GMV. This gives us 82.54%.
 
 **Calculated Field 6: Seller Count Rank**
 ```tableau
@@ -407,7 +411,7 @@ INDEX()
 ```tableau
 FIRST() == 0
 ```
-*Purpose*: Returns TRUE only for the first mark in the partition. Used to filter the KPI card to show concentration ratio once.
+*Purpose*: Returns TRUE only for the first mark in the partition. Used to filter the KPI card to show the concentration ratio once.
 
 **Calculated Field 8: Dynamic Top 20% Count**
 ```tableau
@@ -417,7 +421,7 @@ FIRST() == 0
 
 **View Configuration for Lorenz Curve:**
 - Columns: `% of Sellers` (continuous, table calculation, compute using Seller Id, sorted descending by True GMV)
-- Rows: SUM(`True GMV`) set as Running Total, then Percent of Total (secondary table calculation)
+- Rows: SUM(`True GMV`) set as Running Total, then Per cent of Total (secondary table calculation)
 - Detail: `Seller Id`
 - Reference line on Y-axis: MAX(`Concentration Ratio`) with label "<Value> of GMV"
 - Annotation at 20% mark: Custom text showing "20% of sellers (592 sellers) generate 82.54% of GMV"
@@ -430,16 +434,16 @@ FIRST() == 0
 ---
 
 ### Result
-Completed Tableau dashboard with 7 visualizations:
+Completed Tableau dashboard with 7 visualisations:
 1. Delay Severity vs. Review Score (line chart)
 2. Revenue by Top 10 States (bar chart)
 3. Freight % by State (bar chart)
 4. Monthly Growth (line chart)
 5. Customers by State (map)
 6. Sellers by State (map)
-7. GMV Pareto Distribution + KPI Card (Lorenz curve with technical calculated fields)
+7. GMV Pareto Distribution + KPI Card (Lorenz curve with technically calculated fields)
 
-Dashboard exported as PPTX and published. All hypotheses visually validated.
+Dashboard exported as PPTX and published. All hypotheses were visually validated.
 
 ---
 
@@ -453,4 +457,8 @@ Dashboard exported as PPTX and published. All hypotheses visually validated.
 
 ## Summary
 
-This analysis followed a structured BA workflow: hypothesis formation → data consolidation → cleaning & transformation → pivot table aggregation → visualization. Every calculated column and Tableau field served a specific hypothesis test. The result is a complete evidence package proving that Olist faced severe geographic concentration, delivery performance gaps, and freight cost inequities during 2016-2018.
+This analysis followed a structured BA workflow: hypothesis formation → data consolidation → cleaning & transformation → pivot table aggregation → visualisation. Every calculated column and Tableau field served a specific hypothesis test. The result is a complete evidence package proving that Olist faced severe geographic concentration, delivery performance gaps, and freight cost inequities during 2016-2018.
+
+---
+
+**Next Step**: Now that I am finished with Data Analysis and Visualisation and have proved that my hypothesis was true, I would now move forward to map out [gap-analysis](./6-gap-analysis) so as to show the Business Owner what needs to be done to overcome that gap.
