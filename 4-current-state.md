@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This document maps the operational order fulfillment process as it existed during the 2016–2018 period captured by the dataset. Understanding the current state is essential for identifying where delays occur, where customer experience breaks down, and where process improvements should be targeted.
+This document maps the operational order fulfilment process as it existed during the 2016–2018 period captured by the dataset. Understanding the current state is essential for identifying where delays occur, where customer experience breaks down, and where process improvements should be targeted.
 
 ---
 
@@ -10,7 +10,7 @@ This document maps the operational order fulfillment process as it existed durin
 
 ![AS-IS Order Fulfillment Process](./images/bpmn_process_map.png)
 
-The diagram above uses Business Process Model and Notation (BPMN) to show the end-to-end order fulfillment flow across four actors:
+The diagram above uses Business Process Model and Notation (BPMN) to show the end-to-end order fulfilment flow across four actors:
 
 1. **Customer** (top lane)
 2. **Olist System** (second lane)
@@ -46,7 +46,7 @@ The diagram above uses Business Process Model and Notation (BPMN) to show the en
 
 2. **Validate Payment**: System confirms payment was successfully processed before notifying the seller.
 
-3. **Notify Seller**: Olist sends order details to the responsible seller, triggering the fulfillment process.
+3. **Notify Seller**: Olist sends order details to the responsible seller, triggering the fulfilment process.
 
 4. **Update Tracking**: As the seller and carrier update shipment status, Olist's system reflects these changes in the customer-facing tracking interface.
 
@@ -101,36 +101,17 @@ However, there is no explicit timestamp for when the seller completed packing. T
 
 ### 3. Review Prompt Is Sent After Delivery
 
-The gateway "Leave a Review?" occurs after the customer receives the order. This means that delivery experience—whether the package arrived on time, late, or damaged—directly influences whether the customer engages with the review prompt and what score they assign. Late deliveries not only frustrate customers but also reduce the likelihood of receiving any review at all (customers who are unhappy may choose "Ignored" instead of leaving a poor review).
+The gateway "Leave a Review?" occurs after the customer receives the order. This means that delivery experience—whether the package arrived on time, late, or damaged—directly influences whether the customer engages with the review prompt and what score they assign. Late deliveries not only frustrate customers but also reduce the likelihood of receiving any review at all (unhappy customers may choose "Ignored" instead of leaving a poor review).
 
 ### 4. Geographic Distance Is Not Accounted for in Estimated Delivery Dates
 
 The `order_estimated_delivery_date` field is calculated by the platform at checkout, but the dataset does not reveal whether this estimate considers:
 - The seller's location
 - The customer's location
-- Current carrier capacity in that route
+- Current carrier capacity on that route
 
 If estimated dates are overly optimistic for remote regions, customers will perceive late deliveries even when carriers are performing at their operational best.
 
 ---
 
-## Root Causes Identified in the Current State
-
-Based on the process map and the dataset structure, three structural issues emerge:
-
-1. **Seller Concentration in São Paulo**: Most sellers operate from SP, which means orders to northern states must travel extreme distances. The process was not designed for long-haul fulfillment.
-
-2. **Carrier Infrastructure Gaps**: The "In Transit" step is the longest for remote regions because carriers have fewer warehouses, sorting centers, and delivery vehicles in northern Brazil compared to the southeast.
-
-3. **No Process Differentiation by Region**: The same fulfillment workflow applies whether a customer is in São Paulo (same-city delivery) or Roraima (cross-country delivery). There is no separate expedited route, priority seller assignment, or regional carrier partnership to handle remote orders differently.
-
----
-
-## Implications for Gap Analysis
-
-The current state reveals **where** problems occur:
-- Seller packing delays (hidden in data)
-- Long transit times to remote states (visible in data)
-- Late deliveries causing review score collapse (visible in data)
-
-The next step is to define the **desired future state** (TO-BE) and measure the gap between current performance and target performance. This is documented in [Gap Analysis](./gap-analysis.md).
+**Next Step**: Now that I have formed hypotheses, understood the stakeholder-map and mapped the current-state, I will move forward with [Data-Analysis](./5-analysis)
