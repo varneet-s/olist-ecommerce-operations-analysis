@@ -21,7 +21,7 @@ Gap analysis quantifies the distance between the current state (AS-IS) and the d
 ## Gap 1: Freight Cost Burden in Northern States
 
 ### AS-IS Performance
-Customers in Roraima (RR), Rondônia (RO), Maranhão (MA), and Acre (AC) paid freight costs exceeding 50% of product price. For a R$100 product, customers in RR paid R$60 in freight, making the total cost R$160. In São Paulo, the same product cost R$125 (R$100 + R$25 freight).
+Customers in Roraima (RR), Rondônia (RO), Maranhão (MA), and Acre (AC) paid freight costs exceeding 50% of the product price. For example, for a R$100 product, customers in RR paid R$60 in freight, making the total cost R$160. In São Paulo, the same product costs R$125 (R$100 + R$25 freight).
 
 **Quantified Impact:**
 - RR: 60.07% avg freight burden (46 orders)
@@ -30,14 +30,14 @@ Customers in Roraima (RR), Rondônia (RO), Maranhão (MA), and Acre (AC) paid fr
 - SP baseline: 25.24% avg freight burden
 
 ### TO-BE Target
-Reduce freight as a percentage of product price to below 20% in all states, matching industry benchmarks for domestic e-commerce logistics in Brazil.
+Reduce freight as a percentage of product price to below 20% across all states, aligning with industry benchmarks for domestic e-commerce logistics in Brazil.
 
 ### Gap Magnitude
-Northern states need a **30-40 percentage point reduction** in freight burden to reach competitive parity with São Paulo. This translates to cutting freight costs by 50-60% in absolute terms for remote-region orders.
+Northern states need a **30-40 percentage-point reduction** in the freight burden to reach competitive parity with São Paulo. This translates to cutting freight costs by 50-60% in absolute terms for remote-region orders.
 
 ### Why This Gap Exists
 - Long distances from SP-based sellers to northern customers (2,000-3,000 km)
-- Sparse carrier infrastructure in northern states (fewer distribution centers, limited last-mile capacity)
+- Sparse carrier infrastructure in northern states (fewer distribution centres, limited last-mile capacity)
 - Low order volume per route reduces carrier efficiency (trucks running half-empty)
 
 ---
@@ -54,7 +54,7 @@ Orders 7+ days late averaged **1.70 review scores**, functionally destroying cus
 
 ### TO-BE Target
 - Reduce late delivery rate to <3% platform-wide
-- Improve avg review score for late deliveries to >3.5 (through faster recovery processes, proactive communication)
+- Improve the average review score for late deliveries to >3.5 (through faster recovery processes, proactive communication)
 - Achieve >4.0 avg review score across all delivery statuses
 
 ### Gap Magnitude
@@ -64,17 +64,17 @@ Orders 7+ days late averaged **1.70 review scores**, functionally destroying cus
 ### Why This Gap Exists
 - Estimated delivery dates do not account for actual transit time variability in remote regions
 - No priority routing or expedited handling for high-risk routes
-- Sellers lack visibility into carrier performance, cannot adjust packing speed accordingly
+- Sellers lack visibility into carrier performance and cannot adjust packing speed accordingly
 
 ---
 
 ## Gap 3: Geographic Revenue Concentration
 
 ### AS-IS Performance
-São Paulo generated 42% of total platform revenue (R$4.62M out of R$12.09M). The top three states (SP, RJ, MG) accounted for ~70% of GMV. Northern and central-west states combined contributed less than 15% of revenue despite representing significant population and purchasing power.
+São Paulo generated 42% of total platform revenue (R$4.62M out of R$12.09M). The top three states (SP, RJ, MG) accounted for ~70% of GMV. Northern and central-west states combined contributed less than 15% of revenue despite representing a significant population and purchasing power.
 
 **Order distribution mismatch:**
-- Customers distributed across all 27 states
+- Customers are distributed across all 27 states
 - Sellers concentrated in 4 states (SP: 1,764 sellers, MG: 233, PR: 334, RJ: 162)
 
 ### TO-BE Target
@@ -86,7 +86,7 @@ São Paulo revenue share must decline by **~17 percentage points** (from 42% to 
 Northern states need to increase their collective contribution by **+15 percentage points** (from ~15% to 30%).
 
 ### Why This Gap Exists
-- Seller supply concentrated in southeast (network effects: sellers attract customers, customers attract sellers)
+- Seller supply concentrated in the southeast (network effects: sellers attract customers, customers attract sellers)
 - High freight costs suppress demand in remote regions (customers abandon carts when they see 50-60% freight burden)
 - No targeted seller acquisition campaigns for underserved states
 
@@ -94,13 +94,13 @@ Northern states need to increase their collective contribution by **+15 percenta
 
 ## Root Cause Diagnosis: Nadler-Tushman Congruence Model
 
-The Nadler-Tushman framework diagnoses organizational performance by examining four components: **Work, People, Structure, and Culture**. Gaps arise when these components are misaligned.
+The Nadler-Tushman framework diagnoses organisational performance by examining four components: **Work, People, Structure, and Culture**. Gaps arise when these components are misaligned.
 
 ### Component 1: Work (Processes & Workflows)
 
 **Current State:**
-The order fulfillment workflow is optimized for same-region or short-distance deliveries (SP seller → SP customer). The same process applies to cross-country deliveries (SP seller → RR customer), but it doesn't account for:
-- Longer transit times requiring buffer adjustments
+The order fulfilment workflow is optimised for same-region or short-distance deliveries (SP seller → SP customer). The same process applies to cross-country deliveries (SP seller → RR customer), but it doesn't account for:
+- Longer transit times require buffer adjustments
 - Higher risk of delays requiring proactive customer communication
 - Different carrier partnerships needed for remote routes
 
@@ -115,17 +115,17 @@ Introduce regional process variants—different estimated delivery windows, dedi
 ### Component 2: People (Skills & Expertise)
 
 **Current State:**
-Olist's operations team during 2016-2018 lacked dedicated logistics expertise for long-haul or northern-region fulfillment. Most team members understood southeast e-commerce dynamics but had no experience negotiating regional carrier contracts or managing remote-route optimization.
+Olist's operations team during 2016-2018 lacked dedicated logistics expertise for long-haul or northern-region fulfilment. Most team members understood Southeast e-commerce dynamics but had no experience negotiating regional carrier contracts or managing remote-route optimisation.
 
 **Misalignment:**
-The people responsible for delivery performance lack the specialized knowledge required to solve northern-state logistics challenges.
+The people responsible for delivery performance lack the specialised knowledge required to solve northern-state logistics challenges.
 
 **Required Change:**
-Hire or train logistics specialists with expertise in remote-region fulfillment and carrier network design outside the southeast.
+Hire or train logistics specialists with expertise in remote-region fulfilment and carrier network design outside the southeast.
 
 ---
 
-### Component 3: Structure (Organizational Design)
+### Component 3: Structure (Organisational Design)
 
 **Current State:**
 Olist operated without a dedicated logistics function during this period. Carrier relationships were managed reactively by the operations team, with no clear ownership of:
@@ -134,7 +134,7 @@ Olist operated without a dedicated logistics function during this period. Carrie
 - Delivery performance monitoring by region
 
 **Misalignment:**
-The organizational structure lacks a function responsible for solving the freight and delivery gaps. Without ownership, problems persist.
+The organisational structure lacks a function responsible for solving the freight and delivery gaps. Without ownership, problems persist.
 
 **Required Change:**
 Create a Logistics & Regional Expansion team with clear accountability for freight cost reduction, carrier partnerships in underserved regions, and delivery performance targets by state.
@@ -144,10 +144,10 @@ Create a Logistics & Regional Expansion team with clear accountability for freig
 ### Component 4: Culture (Values & Norms)
 
 **Current State:**
-Growth during 2016-2018 was driven by expanding seller count and order volume in established markets (São Paulo, Rio, Minas Gerais). The implicit cultural norm was "grow where it's easy." Northern states were deprioritized because they were harder to serve and represented smaller immediate revenue.
+Growth during 2016-2018 was driven by expanding seller count and order volume in established markets (São Paulo, Rio, Minas Gerais). The implicit cultural norm was "grow where it's easy." Northern states were deprioritised because they were harder to serve and represented smaller immediate revenue.
 
 **Misalignment:**
-The culture prioritizes short-term efficiency (maximize orders in SP) over long-term market diversification (invest in remote-region infrastructure).
+The culture prioritises short-term efficiency (maximise orders in SP) over long-term market diversification (invest in remote-region infrastructure).
 
 **Required Change:**
 Shift cultural focus toward geographic diversification as a strategic priority. Measure success by "revenue per state" and "freight equity" rather than just total GMV.
@@ -179,9 +179,11 @@ Based on the magnitude of impact and urgency:
 
 The gaps identified here are **not independent**—they are causally linked:
 - High freight costs exist **because** sellers are concentrated in SP
-- Late deliveries occur **because** the fulfillment workflow doesn't account for distance
+- Late deliveries occur **because** the fulfilment workflow doesn't account for distance
 - Revenue concentration persists **because** customers in remote regions face high freight and poor delivery performance
 
-**Therefore**, recommendations must address the underlying structural causes (logistics function, regional carrier partnerships, seller diversification) rather than treating symptoms (subsidizing freight without fixing the process).
+**Therefore**, recommendations must address the underlying structural causes (logistics function, regional carrier partnerships, seller diversification) rather than treating symptoms (subsidising freight without fixing the process).
 
-Detailed recommendations are provided in [Business Recommendations](./business-recommendations.md).
+---
+
+**Next Step**: Detailed insights derived from the analysis are provided in [Insights](./6-insights.md).
