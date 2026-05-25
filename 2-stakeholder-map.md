@@ -58,7 +58,7 @@ The CEO owns the final decision on geographic expansion strategy, seller acquisi
 This team is responsible for carrier relationships, delivery performance monitoring, and seller onboarding logistics. They have direct operational authority to negotiate regional carrier contracts and optimise fulfilment processes. They need:
 - Granular data on delivery failures by route and carrier
 - Freight cost breakdowns by state and distance
-- Actionable metrics (e.g., "reduce transit time in RR/RO routes by X days")
+- Actionable metrics tied to underperforming delivery routes
 
 **Engagement Approach**: Deep-dive working sessions to validate findings, collaborate on the feasibility of logistics recommendations, and co-develop implementation plans.
 
@@ -113,15 +113,17 @@ Customers care about receiving their orders on time and at a reasonable cost, bu
 
 ## Key Insight
 
-The stakeholder map reveals that **Operations & Logistics and the CEO must be aligned** for any recommendation to move forward. Both groups have high power and high interest, but their priorities differ
- 
-- The CEO focuses on revenue growth and market expansion.
-- While Ops focuses on operational feasibility and cost control. 
+If the business questions confirm what is suspected, two stakeholders become critical to
+any action that follows — **Operations & Logistics and the CEO**. Both carry high power
+and high interest, but their priorities would pull in different directions:
 
-Recommendations must satisfy both strategic and operational criteria to gain buy-in.
+- The CEO would focus on revenue growth and market expansion
+- Ops would focus on operational feasibility and cost control
 
-Additionally, the **Sales & Marketing team should be involved early** in any seller acquisition strategy for underserved regions, as they will execute the campaigns and need to validate targeting assumptions.
+Any recommendation would need to satisfy both to gain traction. Additionally, if regional
+underservice is confirmed, **Sales & Marketing would need early involvement** in any
+seller acquisition strategy — as they would be executing the campaigns and need to validate targeting assumptions before rollout.
 
 ---
 
-**Next Step**: Before I proceed with [Analysis](5-analysis), I decided to document [Current-State](./4-current-state) to identify where delays occur.
+**Next Step**: Before proceeding with [Analysis](./4-analysis.md), I documented the [Current State](./3-current-state.md) to identify where delays occur.
