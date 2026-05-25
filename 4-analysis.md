@@ -3,6 +3,7 @@
 This document details every step of the data analysis process, from raw data ingestion through final Tableau dashboard creation. The analysis is organised using the STAR framework (Situation, Task, Action, Result) to show what needed to be done, how I did it, and what was achieved at each phase.
 
 ---
+![ERD Schema](./images/erd_olist_kaggle.png)
 
 ## Phase 1: Data Ingestion & Consolidation
 
@@ -74,7 +75,7 @@ Then translated to English:
 *Business Logic*: Original category names were in Portuguese. English translations made pivot tables more readable for stakeholders unfamiliar with Portuguese.
 
 ### Result
-Successfully created a MASTER sheet with 99,441 rows and 23 columns, combining order-level data with customer location, seller location, pricing, freight, and review scores. All subsequent analysis was performed on this consolidated table.
+Successfully created a MASTER sheet with 99,441 rows and 23 columns, combining order-level data with customer location, seller location, pricing, freight, and review scores. All subsequent analyses were performed on this consolidated table.
 
 ---
 
@@ -84,7 +85,7 @@ Successfully created a MASTER sheet with 99,441 rows and 23 columns, combining o
 The MASTER sheet contained orders across all statuses (delivered, shipped, cancelled, unavailable). Only delivered orders were relevant for testing the hypotheses because review scores and delivery timing require completed deliveries.
 
 ### Task
-Filter the dataset to include only delivered orders and calculate metrics needed for hypothesis testing.
+Filter the dataset to include only delivered orders and calculate the metrics needed for business question testing.
 
 ### Action
 
@@ -152,10 +153,10 @@ DELIVERED_ONLY sheet now contains 96,478 rows with 8 new calculated columns, rea
 
 ---
 
-## Phase 3: Pivot Table Analysis (Hypothesis Testing)
+## Phase 3: Data Analysis (Business Question Testing)
 
 ### Situation
-With cleaned data and calculated columns in place, I needed to aggregate the data to test each of the four hypotheses and quantify the business gaps.
+With cleaned data and calculated columns in place, I needed to aggregate the data to test each of the four business questions and quantify the business gaps.
 
 ### Task
 Build 6 pivot tables to answer specific analytical questions tied to H1, H2, H3, and H4.
@@ -219,7 +220,7 @@ Result (Top 10):
 | GO | 254,663 | 2.3% |
 | ES | 246,253 | 2.2% |
 
-**Finding**: São Paulo alone generated 42% of platform revenue. Top 3 states (SP, RJ, MG) accounted for ~70%. This confirmed extreme geographic concentration (H2).
+**Finding**: São Paulo alone generated 42% of platform revenue. The top 3 states (SP, RJ, MG) accounted for ~70%. This confirmed extreme geographic concentration (H2).
 
 ---
 
@@ -294,7 +295,7 @@ For comparison:
 ---
 
 ### Result
-All 6 pivot tables completed. All four hypotheses (H1, H2, H3, H4) were validated with quantified evidence. The data was ready for visualisation in Tableau.
+All 6 pivot tables completed. All four business questions(H1, H2, H3, H4) were validated with quantified evidence. The data was ready for visualisation in Tableau.
 
 ---
 
@@ -308,13 +309,13 @@ Build an interactive Tableau dashboard with 4 core visualisations, including a t
 
 ### Action
 
-**Step 1: Data Connection**
+**Data Connection**
 - Tableau Desktop → Connect to Data → Microsoft Excel
 - Selected `DELIVERED_ONLY` sheet from `Olist_Business_Analysis.xlsx`
 - Verified field types (dimensions vs. measures) and relationships
 
 
-**Step 2: Visualisation 1 — Delay Severity vs. Review Score**
+**Visualisation 1 — Delay Severity vs. Review Score**
 - Chart type: Line chart
 - X-axis: `delay_band` (ordered: Early → On Time → Late 1-3d → Late 4-7d → Late 7+d)
 - Y-axis: AVG(`review_score`)
@@ -325,47 +326,61 @@ Build an interactive Tableau dashboard with 4 core visualisations, including a t
 - **Insight shown**: Visual collapse from 4.3 (early) to 1.7 (7+ days late)
 
 
-**Step 3: Visualisation 2 — Revenue by Top 10 States**
+**Visualisation 2 — Revenue by Top 10 States**
 - Chart type: Horizontal bar chart
 - Rows: `customer_state` (filtered to top 10 by SUM(price))
 - Columns: SUM(`price`)
 - Colour: By state (categorical)
+
+![H2 Revenue by State](./images/h2_revenue_by_state.png)
+
 - **Insight shown**: SP dominates at R$4.6M, top 3 states control 70% of GMV
 
-**Step 4: Visualisation 3 — Freight % by State**
+**Visualisation 3 — Freight % by State**
 - Chart type: Horizontal bar chart
 - Rows: `customer_state` (sorted descending by AVG(freight_pct))
 - Columns: AVG(`freight_pct`)
 - Colour gradient: Red (high) to green (low)
+
+![H4 Freight by State](./images/h4_freight_by_state.png)
+
 - **Insight shown**: Northern states have 50-60% freight burden vs. 25% in SP
 
 
-**Step 5: Visualisation 4 — Monthly Growth Trend**
+**Visualisation 4 — Monthly Growth Trend**
 - Chart type: Line chart
 - X-axis: `order_purchase_month_year` (continuous timeline)
 - Y-axis: COUNT DISTINCT(`order_id`)
 - Labels: Show peak months (Nov 2017: 7,289 orders)
+
+![Monthly Growth](./images/monthly_growth.png)
+
 - **Insight shown**: Rapid growth 2016-2017, then plateau 2018
 
-**Step 6: Visualisation 5 — Geographic Maps (2 maps)**
+**Visualisation 5 — Geographic Maps (2 maps)**
 
 **Map A: Customers by State**
 - Map type: Filled map (choropleth)
 - Geographic field: `customer_state` (converted to geographic role)
 - Color: COUNT DISTINCT(`customer_id`)
 - Labels: Show order count per state
-- **Insight shown**: Customers distributed across all 27 states, heavy in southeast
+
+![Customers by State](./images/customers_by_state.png)
+
+- **Insight shown**: Customers distributed across all 27 states, heavy in the southeast
 
 **Map B: Sellers by State**
 - Map type: Filled map
 - Geographic field: `seller_state`
 - Color: COUNT DISTINCT(`seller_id`)
 - Labels: Show seller count per state
+
+![Sellers by State](./images/sellers_by_state.png)
+
 - **Insight shown**: Sellers concentrated in SP (1,764), MG (233), PR (334), RJ (162)—mismatch with customer distribution
 
----
 
-**Step 7: Advanced Visualisation — GMV Pareto Curve (Lorenz Curve)**
+**Visualisation 6 — GMV Pareto Curve (Lorenz Curve)**
 
 This was the most technically complex chart, requiring 8 custom calculated fields to accurately deduplicate data and compute concentration ratios.
 
@@ -426,6 +441,8 @@ FIRST() == 0
 - Reference line on Y-axis: MAX(`Concentration Ratio`) with label "<Value> of GMV"
 - Annotation at 20% mark: Custom text showing "20% of sellers (592 sellers) generate 82.54% of GMV"
 
+![H3 GMV Pareto](./images/h3_gmv_pareto_distribution.png)
+
 **KPI Card (Separate Worksheet):**
 - Filter: `First Row Filter` = TRUE (shows only 1 mark)
 - Text: "20% of sellers (<SUM(Dynamic Top 20% Count)> sellers) generate <AGG(Concentration Ratio)> of GMV"
@@ -434,6 +451,7 @@ FIRST() == 0
 ---
 
 ### Result
+![Dashboard Full View](./images/dashboard_full_view.png)
 Completed Tableau dashboard with 7 visualisations:
 1. Delay Severity vs. Review Score (line chart)
 2. Revenue by Top 10 States (bar chart)
@@ -443,7 +461,7 @@ Completed Tableau dashboard with 7 visualisations:
 6. Sellers by State (map)
 7. GMV Pareto Distribution + KPI Card (Lorenz curve with technically calculated fields)
 
-Dashboard exported as PPTX and published. All hypotheses were visually validated.
+Dashboard exported as PPTX and published. All business questions were visually validated.
 
 ---
 
@@ -457,8 +475,8 @@ Dashboard exported as PPTX and published. All hypotheses were visually validated
 
 ## Summary
 
-This analysis followed a structured BA workflow: hypothesis formation → data consolidation → cleaning & transformation → pivot table aggregation → visualisation. Every calculated column and Tableau field served a specific hypothesis test. The result is a complete evidence package proving that Olist faced severe geographic concentration, delivery performance gaps, and freight cost inequities during 2016-2018.
+This analysis followed a structured BA workflow: business questions formation → data consolidation → cleaning & transformation → data analysis → visualisation. Every calculated column and Tableau field served a specific business question test. The result is a complete evidence package proving that Olist faced severe geographic concentration, delivery performance gaps, and freight cost inequities during 2016-2018.
 
 ---
 
-**Next Step**: Now that I am finished with Data Analysis and Visualisation and have proved that my hypothesis was true, I would now move forward to map out [gap-analysis](./6-gap-analysis) so as to show the Business Owner what needs to be done to overcome that gap.
+**Next Step**: Now that I am finished with Data Analysis and Visualisation and have proved that the business question I formed was true, I would now move forward to map out [gap-analysis](./5-gap-analysis) so as to show the Business Owner what needs to be done to overcome that gap.
