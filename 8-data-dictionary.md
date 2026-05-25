@@ -2,13 +2,13 @@
 
 ## Purpose
 
-This document defines all calculated columns and custom fields created during the analysis. It serves as technical reference for anyone reviewing the Excel workbook or Tableau dashboard to understand how derived metrics were calculated and why they were needed.
+This document defines all calculated columns and custom fields created during the analysis. It serves as a technical reference for anyone reviewing the Excel workbook or Tableau dashboard to understand how derived metrics were calculated and why they were needed.
 
 ---
 
 ## Part 1: Excel Calculated Columns (MASTER Sheet)
 
-These columns were added to the MASTER sheet during the data transformation phase to enable pivot table analysis and hypothesis testing.
+These columns were added to the MASTER sheet during the data transformation phase to enable pivot table analysis and business question testing.
 
 ### 1. delivery_delay_days
 
@@ -23,7 +23,7 @@ Calculates the number of days between the actual delivery date and the estimated
 
 **Interpretation:**
 - Positive value = Late delivery (arrived AFTER estimated date)
-- Zero = On-time delivery (arrived exactly on estimated date)
+- Zero = On-time delivery (arrived exactly on the estimated date)
 - Negative value = Early delivery (arrived BEFORE estimated date)
 
 **Example:**  
@@ -45,9 +45,9 @@ Estimated: Jan 10, Actual: Jan 15 → `delivery_delay_days = +5` (5 days late)
 Converts the numeric `delivery_delay_days` into a human-readable categorical status for easier pivot table grouping.
 
 **Possible Values:**
-- "Early" — Delivered before estimated date
-- "On Time" — Delivered exactly on estimated date
-- "Late" — Delivered after estimated date
+- "Early" — Delivered before the estimated date
+- "On Time" — Delivered exactly on the estimated date
+- "Late" — Delivered after the estimated date
 
 **Used For:** Pivot Table 1 (Delivery Status vs. Avg Review Score)
 
@@ -180,7 +180,7 @@ Original category names were in Portuguese. English translations make data reada
 Portuguese: "beleza_saude"  
 English: "health_beauty"
 
-**Used For:** Category-level analysis (not emphasized in final recommendations but available for future deep dives)
+**Used For:** Category-level analysis (not emphasised in final recommendations but available for future deep dives)
 
 ---
 
@@ -193,7 +193,7 @@ These custom fields were created in Tableau to build the GMV Concentration Paret
 **Data Type:** Measure (LOD Calculation)  
 **Formula:**
 ```tableau
-{FIXED [Order Id], [Product Id], [Seller Id] : MAX([Price])}
+{FIXED [Order Id], [Product Id], [Seller Id]: MAX([Price])}
 ```
 
 **Technical Function:**  
@@ -212,7 +212,7 @@ INDEX() / SIZE()
 ```
 
 **Technical Function:**  
-Computes a continuous ranked percentage from 0% to 100% along the sorted seller list. `INDEX()` returns the current mark's position (1, 2, 3...), `SIZE()` returns total number of marks. Dividing gives the cumulative percentage.
+Computes a continuous ranked percentage from 0% to 100% along the sorted seller list. `INDEX()` returns the current mark's position (1, 2, 3...), `SIZE()` returns the total number of marks. Dividing gives the cumulative percentage.
 
 **Example:**  
 - Seller #592 out of 2,960 sellers → `INDEX() = 592`, `SIZE() = 2960` → `% of Sellers = 20%`
@@ -247,7 +247,7 @@ IF [Top 20% of Sellers] THEN SUM([True GMV]) END
 ```
 
 **Technical Function:**  
-Isolates GMV earned by only the top 20% of sellers. If the seller is not in the top 20%, this returns NULL (excluded from aggregation).
+Isolates the GMV earned by only the top 20% of sellers. If the seller is not in the top 20%, this returns NULL (excluded from aggregation).
 
 **Used For:** Numerator in `Concentration Ratio` calculation
 
@@ -286,7 +286,7 @@ Returns the running sequence number (1, 2, 3...) for each seller in the sorted p
 **Example:**  
 Seller ranked #592 → `Seller Count Rank = 592`
 
-**Used For:** Dynamic annotation text showing exact number of sellers in top 20%
+**Used For:** Dynamic annotation text showing the exact number of sellers in the top 20%
 
 ---
 
