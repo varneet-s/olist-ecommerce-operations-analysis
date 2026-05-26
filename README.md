@@ -8,20 +8,19 @@
  
 ## Table of Contents
 1. [Executive Summary](#executive-summary)
-2. [Quick Start](#quick-start)
-3. [Business Questions](#business-questions)
-4. [Dashboard Preview](#dashboard-preview)
-5. [Business Problem](#business-problem)
-6. [Quantified Business Impact](#quantified-business-impact)
-7. [Project Structure](#project-structure)
-8. [Key Findings](#key-findings)
-9. [Project Highlights](#project-highlights)
-10. [What This Analysis Demonstrates](#what-this-analysis-demonstrates)
-11. [Data Source](#data-source)
-12. [Repository Contents](#repository-contents)
-13. [Next Steps](#next-steps)
-14. [Repository Statistics](#repository-statistics)
-15. [Contact](#contact)
+2. [Quick Start](#quick-start) 
+3. [Dashboard Preview](#dashboard-preview)
+4. [Business Problem](#business-problem)
+5. [Business Questions](#business-questions)
+6. [Project Structure](#project-structure)
+7. [Key Findings](#key-findings)
+8. [Project Highlights](#project-highlights)
+9. [What This Analysis Demonstrates](#what-this-analysis-demonstrates)
+10. [Data Source](#data-source)
+11. [Repository Contents](#repository-contents)
+12. [Next Steps](#next-steps)
+13. [Repository Statistics](#repository-statistics)
+14. [Contact](#contact)
 ---
  
 ## Executive Summary
@@ -41,35 +40,6 @@ Olist, a Brazilian e-commerce marketplace aggregator, faced severe geographic co
 **For business stakeholders:** Jump to [Business Recommendations](./7-business-recommendations.md) for prioritised, actionable interventions (10 min read).
  
 **To explore the data:** Download `data/Olist_Business_Analysis.xlsx` or view `dashboard/Olist_Analysis_Dashboard.pptx`.
- 
----
- 
-## Business Questions
- 
-**Methodology:** I wrote these four business questions and their predicted outcomes BEFORE opening the dataset—documented in a separate file to avoid retrofitting conclusions to data. This ensures analytical integrity: I was testing predictions, not cherry-picking patterns.
- 
-### The Four Business Questions (Formed Before Analysis)
- 
-**H1: Delivery Performance Impact**
-- Could delivery delays be reducing customer satisfaction scores?
-- **Prediction:** Late deliveries will show significantly lower review scores than on-time deliveries
-- **Test method:** Compare average review scores across delivery status groups (early/on-time/late)
-
-**H2: Geographic Revenue Distribution**
-- Which states drive the majority of platform revenue, and how concentrated is it?
-- **Prediction:** A small number of states will account for the majority of platform revenue
-- **Test method:** Aggregate total GMV by customer state, calculate concentration ratios
-
-**H3: Seller Contribution Pattern**
-- What percentage of sellers are responsible for the majority of GMV?
-- **Prediction:** Revenue will follow a power law distribution (Pareto Principle)
-- **Test method:** Build Lorenz curve showing cumulative GMV vs. cumulative seller count
-
-**H4: Regional Freight Economics**
-- Which states have disproportionately high freight costs relative to order value?
-- **Prediction:** Remote states will have significantly higher freight burdens than major urban centres
-- **Test method:** Calculate freight_pct = (freight_value / price) × 100, group by customer state
-**Validation Results:** All four business questions confirmed ✓ (detailed in [Analysis](./4-analysis.md))
  
 ---
  
@@ -99,25 +69,24 @@ Olist faced three interconnected structural gaps that limited sustainable growth
 
 3. **Geographic Revenue Concentration**: Platform revenue was heavily concentrated in a small number of states, exposing the business to regional economic shocks and growth saturation.
 
-These gaps were causally linked: seller concentration patterns forced most orders into long-haul fulfilment, which drove both high freight costs and increased late delivery risk in remote regions. The analysis quantified these gaps and traced them to a root cause.
+These gaps were causally linked: seller concentration patterns forced most orders into long-haul fulfilment, which drove both high freight costs and an increased risk of late delivery in remote regions. The analysis quantified these gaps and traced them to a root cause.
  
-Detailed problem context, business impact, and analytical questions are documented in [Business Problem Diagnosis](./1-business-problem-diagnosis.md).
+Detailed problem context and business questions are documented in [Business Problem Diagnosis](./1-business-problem-diagnosis.md).
  
 ---
- 
-## Quantified Business Impact
- 
-Based on 2016-2018 data analysis:
- 
-| Metric | Current State | Business Cost |
-|--------|---------------|---------------|
-| Late delivery rate | 6.8% of orders | R$392K+ in lost customer lifetime value |
-| Revenue concentration | Dominated by a few states | 40% of total revenue at risk from regional shock |
-| Seller concentration | 82.5% GMV from top 20% | Platform health depends on retaining 592 sellers |
-| Freight burden (regional variation) | Significant disparity | 10-15% suppressed order volume in underserved regions |
-| Monthly growth | Plateaued after Nov 2017 | Growth ceiling reached without geographic expansion |
- 
-**Root Cause:** Seller concentration patterns force long-haul fulfilment for most orders, directly causing freight and delivery gaps.
+
+## Business Questions
+
+Before opening the dataset, I formed four business questions using the 6P framework to guide the analysis and avoid retrofitting conclusions to data.
+
+**H1:** Could delivery delays be reducing customer satisfaction scores?  
+**H2:** Which states drive the majority of platform revenue, and how concentrated is it?  
+**H3:** What percentage of sellers are responsible for the majority of GMV?  
+**H4:** Which states have disproportionately high freight costs relative to order value?
+
+**Validation Results:** All four business questions confirmed ✓
+
+Full methodology, predictions, and test methods documented in [Business Problem Diagnosis](./1-business-problem-diagnosis.md).
  
 ---
  
@@ -233,23 +202,27 @@ Technical reference documenting all calculated columns and custom fields:
 - **Root cause diagnosis:** Applied Nadler-Tushman Congruence Model across Work-People-Structure-Culture
 - **Gap quantification:** Calculated AS-IS vs. TO-BE targets with specific improvement ranges
 - **Recommendation prioritisation:** Used MoSCoW framework with effort/impact assessment
+
 ### Data Analysis Skills
 - **Data engineering:** Consolidated 9 CSV files using XLOOKUP (many-to-many relationships handled correctly)
 - **Data transformation:** Built 8 calculated columns with clear business logic
 - **Pivot table analysis:** Created 6 pivot tables, testing specific business questions
 - **Statistical analysis:** Calculated averages, concentration ratios, percentiles, and distributions
 - **Data quality:** Handled nulls, duplicates, and many-to-many relationships with proper deduplication
+
 ### Data Visualisation Skills
 - **Tableau LOD calculations:** Created `True GMV` field to deduplicate many-to-many payments
 - **Table calculations:** Built running totals, cumulative percentages, and window aggregations
 - **Lorenz curve:** Constructed a technically accurate Pareto distribution with 8 custom fields
 - **Geographic mapping:** Converted state codes to filled maps showing regional patterns
 - **Dashboard design:** Combined 7 visualisations telling a coherent business story
+
 ### Communication Skills
 - **STAR documentation:** Every analysis phase follows Situation-Task-Action-Result structure
 - **Technical precision:** All formulas documented with data types, business logic, and examples
 - **Narrative flow:** 9 documents build logically from problem diagnosis → recommendations
 - **Stakeholder-appropriate writing:** Different sections target different audiences (executives vs. analysts)
+
 ### Frameworks Applied
 - **STAR** (Situation-Task-Action-Result) — Structured analysis documentation
 - **RACI** (Responsible-Accountable-Consulted-Informed) — Stakeholder classification
@@ -258,10 +231,12 @@ Technical reference documenting all calculated columns and custom fields:
 - **Pareto Principle** (80/20 Rule) — Seller concentration analysis
 - **6P Framework** — Problem diagnosis (Product, Price, Place, Promotion, People, Process)
 - **MoSCoW** — Prioritization framework
+
 ### Tools Used
 - **Excel** (Power Query, XLOOKUP, Pivot Tables, Calculated Columns) — Data consolidation, transformation, and aggregation
 - **Tableau Desktop** (LOD Calculations, Table Calculations, Geographic Mapping) — Dashboard visualisation and Pareto analysis
 - **draw.io** (BPMN, Power/Interest Grid, Database Schema) — Process mapping and stakeholder analysis
+
 ---
  
 ## Data Source
@@ -360,6 +335,3 @@ olist-analysis/
 **Analysis Date:** May 2026  
 **Dataset Period:** September 2016 – August 2018  
 **Business Context:** Brazilian E-Commerce Marketplace Aggregation
- 
-**Dataset Source:** [Kaggle](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data)
- 
