@@ -36,7 +36,7 @@ Olist, a Brazilian e-commerce marketplace aggregator, faced severe geographic co
  
 **For recruiters/hiring managers:** Review the [Dashboard Preview](#dashboard-preview) and [Key Findings](#key-findings) (5 min read).
  
-**For analysts/peers:** Start with [Analysis](./4-analysis.md) to see the complete STAR methodology walkthrough showing how every metric was built (20 min read).
+**For analysts/peers:** Start with [Analysis](./4-analysis.md) for a complete walkthrough of the analysis, showing how each metric was built (20 min read).
  
 **For business stakeholders:** Jump to [Business Recommendations](./7-business-recommendations.md) for prioritised, actionable interventions (10 min read).
  
@@ -54,14 +54,17 @@ Olist, a Brazilian e-commerce marketplace aggregator, faced severe geographic co
 - Could delivery delays be reducing customer satisfaction scores?
 - **Prediction:** Late deliveries will show significantly lower review scores than on-time deliveries
 - **Test method:** Compare average review scores across delivery status groups (early/on-time/late)
+
 **H2: Geographic Revenue Distribution**
 - Which states drive the majority of platform revenue, and how concentrated is it?
 - **Prediction:** A small number of states will account for the majority of platform revenue
 - **Test method:** Aggregate total GMV by customer state, calculate concentration ratios
+
 **H3: Seller Contribution Pattern**
 - What percentage of sellers are responsible for the majority of GMV?
 - **Prediction:** Revenue will follow a power law distribution (Pareto Principle)
 - **Test method:** Build Lorenz curve showing cumulative GMV vs. cumulative seller count
+
 **H4: Regional Freight Economics**
 - Which states have disproportionately high freight costs relative to order value?
 - **Prediction:** Remote states will have significantly higher freight burdens than major urban centres
@@ -173,18 +176,23 @@ Technical reference documenting all calculated columns and custom fields:
 - Late deliveries show significantly degraded review scores
 - Progressive degradation as delay severity increases
 - Destroys repeat purchase potential
+
 **2. Geographic revenue concentration**
 - A small number of states control the majority of platform revenue
 - Creates high concentration risk and exposure to regional economic shocks
+
 **3. Top 20% of sellers generate 82.5% of GMV**
 - Extreme Pareto concentration: 592 of 2,960 sellers
 - Platform health depends on a small group of high performers
+
 **4. Regional freight burden disparity**
 - Remote states pay significantly higher freight costs relative to product price
 - Customers paying a "distance tax" that suppresses demand
+
 **5. Seller concentration drives all gaps**
 - The majority of sellers are concentrated in one region
 - Forces long-haul fulfilment, driving both freight and delivery gaps
+
 **6. Growth hit a ceiling in late 2017**
 - Monthly orders peaked at 7,289 (Nov 2017), then plateaued
 - Indicates saturation in established markets without geographic expansion
@@ -198,6 +206,7 @@ Technical reference documenting all calculated columns and custom fields:
 - Designed 6 pivot tables testing specific analytical questions
 - Created 8 custom Tableau fields (LOD calculations, table calculations)
 - Constructed a technically accurate Lorenz curve for Pareto analysis
+
 **Business Analysis Rigour:**
 - Business question-driven approach (predictions documented before data analysis)
 - STAR framework documentation (Situation-Task-Action-Result)
@@ -206,6 +215,7 @@ Technical reference documenting all calculated columns and custom fields:
 - Nadler-Tushman diagnostic framework for root cause analysis
 - Gap quantification (AS-IS vs. TO-BE with specific improvement targets)
 - MoSCoW prioritisation of recommendations with impact estimates
+
 **Deliverables:**
 - 9 comprehensive markdown documents (business problem → recommendations)
 - Interactive Tableau dashboard with 7 visualisations
