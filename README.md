@@ -114,11 +114,12 @@ Translates analytical findings into strategic business implications:
 
 ### 7. [Business Recommendations](7-business-recommendations.md)
 
-Three prioritised, actionable recommendations with expected impact, owner, effort, and **MoSCoW prioritisation**:
+Four prioritised, actionable recommendations with expected impact, owner, effort, and **MoSCoW prioritisation**:
 
 1. **Logistics partnerships in northern states** — Reduce freight costs in remote regions
 2. **Reduce transit time in remote routes** — Address late delivery rate and protect review scores
 3. **Seller acquisition in underserved states** — Reduce revenue concentration and shorten fulfilment distances
+4. **Seller tiering based on GMV contribution** — Protect the top 20% of sellers generating 82.5% of platform revenue
 
 ### 8. [Data Dictionary](8-data-dictionary.md)
 
@@ -151,7 +152,7 @@ Technical reference documenting all 8 Excel calculated columns (`delivery_delay_
 **5. Seller concentration in SP is the root cause of all three gaps**
 
 - Most sellers operate from SP → long-haul fulfilment to the rest of Brazil → higher freight costs and higher late delivery risk
-- Solving distribution at the seller level would address all three business problems simultaneously
+- Solving the distribution at the seller level would address all three business problems simultaneously
 
 ---
 
@@ -168,7 +169,7 @@ Technical reference documenting all 8 Excel calculated columns (`delivery_delay_
 - Measure customer satisfaction changes in targeted intervention states
 
 ### Further Analysis
-- **Customer lifetime value modelling:** Calculate actual CLV impact of late deliveries using repeat purchase data
+- **Customer lifetime value modelling:** Calculate the actual CLV impact of late deliveries using repeat purchase data
 - **Predictive delivery risk model:** Logistic regression predicting late delivery probability based on distance, infrastructure, and order characteristics
 - **Category-level analysis:** Identify which product categories carry the highest freight sensitivity
 - **Seasonality deep-dive:** Investigate whether peak periods create systematic delivery bottlenecks
