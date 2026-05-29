@@ -17,7 +17,7 @@ all recommendations stay within that operating model.
 Customers in northern states are still placing orders despite paying freight costs that
 can exceed half the product price. That is not a market with no demand — it is a market
 with a logistics cost problem. Regional carrier partnerships, or an extension of Olist
-Envios coverage into the north, would bring freight costs to a level where northern
+Envios coverage into the north would bring freight costs to a level where northern
 orders become economically viable for both sellers and customers at scale.
 
 **Owner:** Operations & Logistics Team
