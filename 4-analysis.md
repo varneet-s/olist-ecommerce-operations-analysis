@@ -479,4 +479,4 @@ This analysis followed a structured BA workflow: business questions formation â†
 
 ---
 
-**Next Step**: Now that I am finished with Data Analysis and Visualisation and have proved that the business question I formed was true, I would now move forward to map out [gap-analysis](./5-gap-analysis) so as to show the Business Owner what needs to be done to overcome that gap.
+**Next Step**: Now that I have finished Data Analysis and Visualisation and have proven that the business question I formed is true, I will move forward to map out [gap-analysis](./5-gap-analysis) to show the Business Owner what needs to be done to overcome that gap.
