@@ -21,6 +21,7 @@ Envios coverage into the north would bring freight costs to a level where northe
 orders become economically viable for both sellers and customers at scale.
 
 **Owner:** Operations & Logistics Team
+
 **Priority:** High
 
 **Effort:** Medium — requires carrier negotiation and route coverage expansion
@@ -42,7 +43,9 @@ better carrier selection for remote destinations, or hub-based dispatch closer t
 underserved regions.
 
 **Owner:** Operations & Logistics Team
+
 **Priority:** High
+
 **Effort:** High — requires infrastructure changes and carrier SLA renegotiation
 
 ---
@@ -60,8 +63,10 @@ concentration risk, shorten the distance between sellers and northern customers
 that competitors have not yet saturated.
 
 **Owner:** Sales & Marketing Team
+
 **Priority:** Medium — most effective after logistics barriers are reduced. Sellers
 are unlikely to join a platform where their customers face 50-60% freight costs.
+
 **Effort:** Medium — requires campaign design, incentive structure, and onboarding support
 
 ---
@@ -78,7 +83,9 @@ the impact on GMV is immediate. Segmenting sellers into tiers — high-GMV and s
 the revenue base. Retention is cheaper than replacement.
 
 **Owner:** Seller Success Team
+
 **Priority:** High
+
 **Effort:** Low — requires policy change and CRM segmentation, not new infrastructure
 
 ---
@@ -111,4 +118,4 @@ the revenue base. Retention is cheaper than replacement.
 [Analysis](./4-analysis.md) →
 [Gap Analysis](./5-gap-analysis.md) →
 [Insights](./6-insights.md) →
-[Business Recommendations](./7-business-recommendations.md)
+[Business Recommendations](./7-business-recommendations.md) →
